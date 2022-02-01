@@ -1,5 +1,6 @@
 import React from "react";
 import RoomView from "Pages/RoomView";
+import "Utils/Styles/reset.scss";
 
 function App() {
   return (
