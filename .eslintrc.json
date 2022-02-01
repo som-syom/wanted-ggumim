@@ -3,11 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "eslint:recommended",
-    "airbnb-base",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -16,7 +12,5 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "rules": {
-    "no-unused-vars": "warn"
-  }
+  "rules": {}
 }
