@@ -1,20 +1,19 @@
 import React, { useEffect, useRef } from "react";
+import ToolTip from "Components/ToolTip";
 import MAGNIFIER_BTN from "Assets/magnifier.png";
 import CLOSE_BTN from "Assets/close.png";
-import MOVE_BTN from "Assets/move.png";
 import "Components/scss/MagnifierButton.scss";
 
 function MagnifierButton({ item, onClickItem, isActive }) {
-  // const [toggleItem, setToggleItem] = useState(false);
   const btnRef = useRef();
   const previewRef = useRef();
-  let moreClassName = "image__item__more";
+  let tooltipClassName = "image__item__tooltip";
 
   if (item.pointY * 1.6 + 11 > 400) {
-    moreClassName += " right-item";
+    tooltipClassName += " right-item";
   }
   if (item.pointX * 1.6 > 500) {
-    moreClassName += " bottom-item";
+    tooltipClassName += " bottom-item";
   }
 
   useEffect(() => {
@@ -26,10 +25,6 @@ function MagnifierButton({ item, onClickItem, isActive }) {
         previewRef.current.style.backgroundImage = `url(${item.imageUrl})`;
     }
   });
-
-  // const onClickItem = () => {
-  //   setToggleItem(!toggleItem);
-  // };
 
   return (
     <div
@@ -45,23 +40,11 @@ function MagnifierButton({ item, onClickItem, isActive }) {
         )}
       </div>
       {isActive && (
-        <div className={moreClassName}>
-          <div className="image__item__more__preview" ref={previewRef}></div>
-          <div className="image__item__more__desc">
-            <h3 className="image__item__more__desc__title">
-              {item.productName}
-            </h3>
-            <div className="image__item__more__desc__price">
-              <span className="expected-price">예상가</span>
-              <span className="discount-price">
-                {(+item.priceDiscount).toLocaleString("en")}
-              </span>
-            </div>
-          </div>
-          <div className="image__item__more__move">
-            <img src={MOVE_BTN} alt="이동하기" />
-          </div>
-        </div>
+        <ToolTip
+          tooltipClassName={tooltipClassName}
+          previewRef={previewRef}
+          item={item}
+        />
       )}
     </div>
   );
