@@ -1,0 +1,118 @@
+.image__item__tooltip {
+  box-sizing: border-box;
+  width: 220px;
+  height: 86px;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 28px;
+  left: -20px;
+  padding: 8px 0 8px 8px;
+  border-radius: 7px;
+  margin-top: 16px;
+  box-shadow: 3px 3px 8px 0 rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  color: #4a4a4a;
+  z-index: 10;
+  cursor: pointer;
+
+  &.bottom-item {
+    top: unset;
+    bottom: 52px;
+    &::before {
+      top: unset;
+      bottom: -8px;
+      transform: rotate(180deg);
+    }
+  }
+  &.right-item {
+    left: -160px;
+    &::before {
+      left: unset;
+      right: 34px;
+    }
+  }
+  &__preview {
+    width: 70px;
+    height: 70px;
+    margin-right: 8px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+  }
+  &__desc {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-bottom: 2px;
+    overflow: hidden;
+    text-align: left;
+
+    &__title {
+      width: 100%;
+      overflow: hidden;
+      color: #333c45;
+      white-space: initial;
+      text-overflow: ellipsis;
+      line-height: 1.3em;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    &__price {
+      display: flex;
+      align-items: center;
+      margin-top: 4px;
+      font-weight: bold;
+
+      & * {
+        line-height: 1.2em;
+      }
+
+      & .expected-price {
+        color: #898f94;
+        font-size: 11px;
+        font-weight: bold;
+        margin-right: 4px;
+      }
+
+      & .discount-rate {
+        color: #ff585d;
+        margin-right: 4px;
+      }
+
+      & .discount-price {
+        display: flex;
+        align-items: center;
+        color: #181d1f;
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+  }
+  &__move {
+    display: flex;
+    align-items: flex-end;
+    margin-top: auto;
+    margin-right: 2px;
+    cursor: pointer;
+    & > img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  &::before {
+    position: absolute;
+    top: -8px;
+    left: 34px;
+    width: 12px;
+    height: 8px;
+    background-image: url("../../Assets/tail.png");
+    background-size: cover;
+    content: "";
+    background-repeat: no-repeat;
+  }
+}
