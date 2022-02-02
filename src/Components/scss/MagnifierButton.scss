@@ -1,13 +1,17 @@
 .image__item {
+  display: block;
   position: absolute;
-  z-index: 3;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
 
   &__btn {
-    cursor: pointer;
     width: 40px;
     height: 40px;
+    z-index: 3;
 
-    & img {
+    & > img {
+      margin: 0 4px;
       width: 32px;
       height: 32px;
     }
@@ -30,14 +34,23 @@
     font-size: 14px;
     color: #4a4a4a;
     z-index: 10;
+    cursor: pointer;
 
     &.bottom-item {
       top: unset;
       bottom: 52px;
+      &::before {
+        top: unset;
+        bottom: -8px;
+        transform: rotate(180deg);
+      }
     }
     &.right-item {
-      top: unset;
       left: -160px;
+      &::before {
+        left: unset;
+        right: 34px;
+      }
     }
     &__preview {
       width: 70px;
@@ -64,6 +77,41 @@
         white-space: initial;
         text-overflow: ellipsis;
         line-height: 1.3em;
+      }
+
+      &__price {
+        display: flex;
+        align-items: center;
+        margin-top: 4px;
+        & * {
+          line-height: 1.2em;
+        }
+
+        & .expected-price {
+          color: #898f94;
+          font-size: 11px;
+          font-weight: bold;
+          margin-right: 4px;
+        }
+
+        & .discount-price {
+          display: flex;
+          align-items: center;
+          color: #181d1f;
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+    }
+    &__move {
+      display: flex;
+      align-items: flex-end;
+      margin-top: auto;
+      margin-right: 2px;
+      cursor: pointer;
+      & > img {
+        width: 20px;
+        height: 20px;
       }
     }
     &::before {
