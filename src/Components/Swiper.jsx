@@ -1,34 +1,27 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import SwiperItem from "Components/SwiperItem";
 import "Components/scss/Swiper.scss";
 
-function Swiper({ item, activeItem, onClickItem }) {
+function Swiper({ item, activeItem, onClickItem, currentX = 0 }) {
+  const swiperRef = useRef();
+
+  useEffect(() => {
+    swiperRef.current.style.transitionDuration = "300ms";
+    swiperRef.current.style.transform = `translateX(${currentX}px)`;
+  }, [currentX, activeItem]);
+
   return (
     <div className="swiper__container">
-      <div className="swiper__wrapper">
+      <div className="swiper__wrapper" ref={swiperRef}>
         {item &&
-          item.map((el) => {
-            let swiperClassName = "swiper__item";
-            if (el.productId === activeItem) {
-              swiperClassName += " active-item";
-            }
+          item.map((el, idx) => {
             return (
-              <div
-                className={swiperClassName}
-                key={el.productId}
-                onClick={(e) => onClickItem(e, el.productId)}
-              >
-                <div
-                  className="swiper__item__img"
-                  style={{ backgroundImage: `url("${el.imageUrl}")` }}
-                >
-                  {el.discountRate > "0" && (
-                    <div className="discount-badge">
-                      {el.discountRate}
-                      <span>%</span>
-                    </div>
-                  )}
-                </div>
-              </div>
+              <SwiperItem
+                item={el}
+                idx={idx}
+                activeItem={activeItem}
+                onClickItem={onClickItem}
+              />
             );
           })}
       </div>

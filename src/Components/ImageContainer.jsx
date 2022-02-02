@@ -8,6 +8,9 @@ function ImageContainer() {
   const [itemData, setItemData] = useState([]);
   const [mainImage, setMainImage] = useState();
   const [activeItem, setActiveItem] = useState("");
+  const [currentX, setCurrentX] = useState(0);
+  let swiperWidth = (106 + 12) * 7;
+  const endWidth = -(swiperWidth - 780); // width 800 - padding 10 10
 
   useEffect(() => {
     const getItemData = async () => {
@@ -19,11 +22,15 @@ function ImageContainer() {
     getItemData();
   }, []);
 
-  const onClickItem = useCallback((e, id) => {
+  const onClickItem = useCallback((e, id, idx) => {
     e.preventDefault();
 
     if (id === activeItem) setActiveItem("");
-    else setActiveItem(id);
+    else {
+      setActiveItem(id);
+      if (idx >= 6) setCurrentX(endWidth);
+      else if (idx === 0) setCurrentX(0);
+    }
   });
 
   const onClickImage = useCallback((e) => {
@@ -51,6 +58,7 @@ function ImageContainer() {
         item={itemData}
         activeItem={activeItem}
         onClickItem={onClickItem}
+        currentX={currentX}
       />
     </div>
   );
